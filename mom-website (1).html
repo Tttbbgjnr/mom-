@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Amazing Mom ❤️</title>
+    <style>
+        /* ============================================
+           GLOBAL STYLES & VARIABLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #f4e4f0;
+            --secondary-color: #e8d4e0;
+            --accent-color: #d4a5c4;
+            --text-color: #5a4a52;
+            --light-text: #8a7a82;
+            --white: #ffffff;
+            --shadow: rgba(212, 165, 196, 0.2);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f4e4f0 0%, #e8d4e0 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           FLOATING HEARTS BACKGROUND ANIMATION
+           ============================================ */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           MAIN CONTAINER
+           ============================================ */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* ============================================
+           HOMEPAGE SECTION
+           ============================================ */
+        #home {
+            text-align: center;
+            padding: 4rem 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .arabic-greeting {
+            margin-top: 4rem;
+            text-align: center;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .arabic-text {
+            font-family: 'Times New Roman', 'Amiri', 'Traditional Arabic', serif;
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px var(--shadow);
+            line-height: 1.5;
+        }
+
+        .arabic-transliteration {
+            font-family: 'Brush Script MT', 'Lucida Calligraphy', 'Edwardian Script ITC', cursive;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        .welcome-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin: 2rem auto;
+            max-width: 800px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .welcome-message p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ============================================
+           DAILY MESSAGE SECTION
+           ============================================ */
+        #daily-message {
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .message-text {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .message-number {
+            color: var(--light-text);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .new-message-btn {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .new-message-btn:hover {
+            background: var(--text-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        /* ============================================
+           LETTER SECTION
+           ============================================ */
+        #letter {
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .letter-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .letter-title {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: justify;
+        }
+
+        .letter-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .letter-signature {
+            text-align: right;
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        /* ============================================
+           HIDDEN SURPRISE BUTTON
+           ============================================ */
+        .secret-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            font-size: 30px;
+        }
+
+        .secret-button:hover {
+            opacity: 1;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ============================================
+           SURPRISE MODAL
+           ============================================ */
+        .surprise-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .surprise-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+            animation: bounceIn 0.6s ease;
+            position: relative;
+        }
+
+        .surprise-content h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .surprise-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .close-surprise {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+        }
+
+        /* ============================================
+           CONFETTI ANIMATION
+           ============================================ */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1999;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            top: -10px;
+            animation: confetti-fall 3s linear;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* ============================================
+           MUSIC CONTROLS
+           ============================================ */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: var(--accent-color);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .arabic-text {
+                font-size: 3rem;
+            }
+
+            .arabic-transliteration {
+                font-size: 1.5rem;
+            }
+
+            .welcome-message,
+            .letter-container,
+            .message-card {
+                padding: 2rem;
+            }
+
+            .message-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .section {
+            min-height: 100vh;
+            display: block;
+            padding: 4rem 0;
+        }
+
+        .active {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-background" id="hearts"></div>
+
+    <!-- Music Control -->
+    <button class="music-control" onclick="toggleMusic()" id="musicBtn">🎵</button>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bgMusic" loop>
+        <!-- You can add your own music file here -->
+        <!-- <source src="music.mp3" type="audio/mpeg"> -->
+    </audio>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <h1 class="hero-title">To My Wonderful Mom ❤️</h1>
+            <p class="hero-subtitle">A special place created with love, just for you</p>
+            
+            <div class="arabic-greeting">
+                <p class="arabic-text">السلام عليكم ورحمة الله</p>
+                <p class="arabic-transliteration">Assalamu Alaikum Warahmatullah</p>
+            </div>
+        </section>
+
+        <!-- LETTER SECTION -->
+        <section id="letter" class="section active">
+            <div class="letter-container">
+                <h2 class="letter-title">A Letter to My Amazing Mom</h2>
+                <div class="letter-content">
+                    <p>Dear Mom,</p>
+                    
+                    <p>Where do I even begin to express what you mean to me? There are no words in any language that could fully capture the depth of my love and gratitude for you.</p>
+                    
+                    <p>You have been there for every moment of my life, through the tears and the laughter, the failures and the triumphs.</p>
+                    
+                    <p>I remember all the sacrifices you made, the sleepless nights you endured and the endless love you gave without ever asking for anything in return. Your strength inspires me every single day. Your kindness has taught me how to be compassionate. Your wisdom has guided me through life's toughest challenges.</p>
+                    
+                    <p>Thank you for being my first teacher, my best friend, my confidant and my hero. Thank you for your patience when I was difficult, for your forgiveness when I made mistakes, and for your love that has never wavered.</p>
+                    
+                    <p>You are not just my mother. You are my inspiration, my safe haven and the reason I strive to be a better person each day. I am so blessed to call you my mom.</p>
+                    
+                    <p>May Allah continue to strengthen you and grant you good health and long life. May He bless you abundantly and answer all your prayers. May your days be filled with joy, peace, and countless blessings. Ameen.</p>
+                    
+                    <p>I love you more than words could ever say, today and always.</p>
+                    
+                    <p class="letter-signature">With all my love,<br>Your child, Najeeb. 💝</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAILY MESSAGE SECTION -->
+        <section id="daily-message" class="section active">
+            <h2 style="text-align: center; font-size: 2.5rem; color: var(--accent-color); margin-bottom: 2rem;">Daily Messages of Love</h2>
+            <div class="message-card">
+                <p class="message-number">Message <span id="messageNum">1</span> of 30</p>
+                <p class="message-text" id="dailyMessageText"></p>
+                <button class="new-message-btn" onclick="getNewMessage()">Show Another Message</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Secret Surprise Button -->
+    <button class="secret-button" onclick="triggerSurprise()">✨</button>
+
+    <!-- Surprise Modal -->
+    <div class="surprise-modal" id="surpriseModal">
+        <div class="surprise-content">
+            <h2>You Found It! 🎉</h2>
+            <p>Mom, you're not just amazing—you're EXTRAORDINARY!</p>
+            <p>Thank you for being the most incredible mother in the world. Your love has shaped who I am today, and I'm forever grateful.</p>
+            <p>You deserve all the happiness in the world! ❤️</p>
+            <button class="close-surprise" onclick="closeSurprise()">Close (But Keep Smiling!)</button>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti" id="confettiContainer"></div>
+
+    <script>
+        // ============================================
+        // DAILY MESSAGES ARRAY (30 unique messages)
+        // ============================================
+        const messages = [
+            "Mom, your love is the foundation upon which I've built my entire life. Thank you for being my rock.",
+            "Every sacrifice you made, every tear you wiped away, every smile you shared—I remember them all with deep gratitude.",
+            "You taught me that kindness is strength, that perseverance pays off, and that love conquers all.",
+            "Your unwavering support has given me wings to fly and roots to come back to. I'm forever grateful.",
+            "Mom, you turned our house into a home filled with warmth, laughter, and unconditional love.",
+            "Thank you for believing in my dreams, even the ones that seemed impossible to everyone else.",
+            "Your wisdom has been my compass, guiding me through life's storms and celebrations alike.",
+            "You've shown me what it means to be strong, graceful, and compassionate—all at the same time.",
+            "Every hug from you feels like coming home. Thank you for being my safe place.",
+            "Mom, you've been my first teacher, my biggest cheerleader, and my most trusted confidant.",
+            "Your patience with me, especially during my challenging times, is a gift I'll never forget.",
+            "Thank you for the countless meals prepared with love, the endless loads of laundry, and the million little things you do.",
+            "You've taught me that family is everything, and I'm blessed to call you my mom.",
+            "Your strength inspires me every single day. You've overcome so much with such grace.",
+            "Mom, you've given me the greatest gift: the knowledge that I am loved unconditionally.",
+            "Thank you for celebrating my uniqueness and encouraging me to be authentically myself.",
+            "Your laugh is my favorite sound, and your smile brightens even my darkest days.",
+            "You've shown me that love isn't just a feeling—it's a choice you make every single day.",
+            "Thank you for the bedtime stories, the goodnight kisses, and the reassurance that everything would be okay.",
+            "Mom, you've been my hero without a cape, performing miracles every single day.",
+            "Your love has been the constant in my ever-changing world. Thank you for your steadfast presence.",
+            "You've taught me to dream big, work hard, and never give up on what matters most.",
+            "Thank you for seeing potential in me that I couldn't see in myself.",
+            "Your prayers have covered me, protected me, and guided me throughout my life.",
+            "Mom, you've shown me what true beauty is—it radiates from a loving heart like yours.",
+            "Thank you for the life lessons that no classroom could ever teach.",
+            "Your encouragement has been the fuel that keeps me going when I want to quit.",
+            "You've loved me through every phase, every mistake, and every triumph. Thank you.",
+            "Mom, your legacy isn't just what you've accomplished—it's the love you've shared.",
+            "Thank you for being you—perfectly imperfect, endlessly loving, and absolutely irreplaceable."
+        ];
+
+        // ============================================
+        // SECTION NAVIGATION
+        // ============================================
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // If showing daily message, load a message
+            if (sectionId === 'daily-message') {
+                loadDailyMessage();
+            }
+        }
+
+        // ============================================
+        // DAILY MESSAGE FUNCTIONALITY
+        // ============================================
+        let currentMessageIndex = 0;
+
+        function loadDailyMessage() {
+            // Get today's date and use it to select a message
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            currentMessageIndex = dayOfYear % messages.length;
+            displayMessage(currentMessageIndex);
+        }
+
+        function getNewMessage() {
+            // Get a random message
+            currentMessageIndex = Math.floor(Math.random() * messages.length);
+            displayMessage(currentMessageIndex);
+        }
+
+        function displayMessage(index) {
+            const messageText = document.getElementById('dailyMessageText');
+            const messageNum = document.getElementById('messageNum');
+            
+            // Fade out
+            messageText.style.opacity = '0';
+            
+            setTimeout(() => {
+                messageText.textContent = `"${messages[index]}"`;
+                messageNum.textContent = index + 1;
+                // Fade in
+                messageText.style.opacity = '1';
+            }, 300);
+            
+            messageText.style.transition = 'opacity 0.3s ease';
+        }
+
+        // ============================================
+        // MUSIC CONTROL
+        // ============================================
+        let musicPlaying = false;
+        
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+            
+            if (musicPlaying) {
+                music.pause();
+                btn.textContent = '🎵';
+                musicPlaying = false;
+            } else {
+                music.play().catch(e => {
+                    alert('Please add a music file to enable background music!');
+                });
+                btn.textContent = '🔇';
+                musicPlaying = true;
+            }
+        }
+
+        // ============================================
+        // SURPRISE FEATURE
+        // ============================================
+        function triggerSurprise() {
+            // Show modal
+            document.getElementById('surpriseModal').style.display = 'flex';
+            
+            // Trigger confetti
+            createConfetti();
+        }
+
+        function closeSurprise() {
+            document.getElementById('surpriseModal').style.display = 'none';
+        }
+
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            confettiContainer.innerHTML = ''; // Clear previous confetti
+            
+            const colors = ['#d4a5c4', '#f4e4f0', '#e8d4e0', '#ff69b4', '#ffc0cb'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiContainer.appendChild(confetti);
+            }
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // ============================================
+        // FLOATING HEARTS BACKGROUND
+        // ============================================
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['❤️', '💕', '💗', '💖'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // ============================================
+        // INITIALIZE ON PAGE LOAD
+        // ============================================
+        window.addEventListener('load', () => {
+            createFloatingHearts();
+            loadDailyMessage(); // Load the initial daily message
+        });
+
+        // Close surprise modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('surpriseModal');
+            if (event.target === modal) {
+                closeSurprise();
+            }
+        }
+    </script>
+</body>
+</html>
